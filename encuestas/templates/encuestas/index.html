@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="font-bold">Lista de Llamadas</h1>
+    <div class="flex items-center">
+        <div class="flex space-x-2 rounded-md shadow-sm p-5">
+            <form method="GET" class="flex items-center space-x-2">
+                <div>
+                    <label for="start_date" class="block text-sm text-gray-500">Fecha Inicio</label>
+                    <input type="date"  id="start_date" name="start_date" placeholder="10/02/2023" class="block mt-2 w-full placeholder-gray-400/70 rounded-lg border border-gray-200 bg-white text-gray-700 pt-3 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40" />
+                </div>
+                <div>
+                    <label for="end_date" class="block text-sm text-gray-500">Fecha Fin</label>
+                    <input type="date"  id="end_date" name="end_date" placeholder="10/02/2023" class="block mt-2 w-full pt-3 placeholder-gray-400/70 rounded-lg border border-gray-200 bg-white text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40" />
+                </div>
+                <button type="submit" class="text-white text-[13px] mt-7 font-mono bg-black hover:bg-gray-700 transition-all rounded-md w-[170px] h-12 items-center justify-center">Buscar encuestas</button>
+            </form>
+        </div>
+    </div>
+
+    {% if llamadas %}
+
+        <section class="container mx-auto">
+            <div class="flex flex-col mt-6">
+                <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="inline-block w-full py-2 align-middle md:px-6 lg:px-8">
+                        <div class="overflow-hidden border border-gray-200  md:rounded-lg">
+                            <table class="min-w-full divide-y divide-gray-200 ">
+                                <thead class="bg-gray-50 ">
+                                    <tr>
+                                        <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 ">
+                                            <div class="flex items-center gap-x-3">
+                                                <span>Llamada</span>
+                                            </div>
+                                        </th>
+
+                                        <th scope="col" class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 ">
+                                                <span>Estado</span>
+                                        </th>
+
+                                        <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 ">Cliente</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200  ">
+                                    {% for llamada in llamadas %}
+                                    <tr>
+                                        <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                                            <div class="inline-flex items-center gap-x-3">
+
+                                                <div class="flex items-center gap-x-2">
+                                                    
+                                                    <div>
+                                                        <h2 class="font-medium text-blue-500  "><a href="{% url 'llamadas:detail' llamada.id %}"> Llamada {{llamada.id}} </h2>
+                                                        <p class="text-sm font-normal text-gray-600 ">{{ llamada.duration }} segundos </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                                            <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 ">
+                                                <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+
+                                                <h2 class="text-sm font-normal text-emerald-500">{{llamada.determinarUltimoEstado}}</h2>
+                                            </div>
+                                        </td>
+                                        <td class="px-4 py-4 text-sm text-gray-500  whitespace-nowrap"> {{llamada.cliente}} </td>                                
+                                        
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,20 @@
+<!Doctype html>
+<html>
+<head>
+    <title>My first view</title>
+</head>
+<body>
+    <h1>Llamada {{llamada.id}}</h1>
+    <ul>
+        <li>Duración: {{llamada.duration}}</li>
+        <li>Cliente: {{llamada.cliente}}</li>
+        <li>Estado Actual: {{ llamada.determinarUltimoEstado }}</li>
+    </ul>
+    <ul>
+        {% for respuesta in llamada.respuestasDeEncuesta.all %}
+        <li>{{ respuesta.respuestasDeEncuesta }}</li>
+        {% endfor %}
+    </ul>
+    <a href="/">Volver</a>
+</body>
+</html>
