@@ -2,7 +2,7 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors');
 
 module.exports = {
-	content: ["./encuestas/templates/**/*.html"],
+	content: ["encuestas/templates/**/*.html"],
 	theme: {
 		extend: {},
 	},
