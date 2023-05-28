@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Llamada: {{ llamada.duration }} segundos</h1>
+<p>Descripcion Operador: {{ llamada.descripcionOperador }}</p>
+
+<h2>Encuesta: {{ encuesta.descripcion }}</h2>
+<p>Pregunta: {{ encuesta.pregunta }}</p>
+
+{% endblock %}

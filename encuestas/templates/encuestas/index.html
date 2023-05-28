@@ -13,12 +13,11 @@
                     <label for="end_date" class="block text-sm text-gray-500">Fecha Fin</label>
                     <input type="date"  id="end_date" name="end_date" placeholder="10/02/2023" class="block mt-2 w-full pt-3 placeholder-gray-400/70 rounded-lg border border-gray-200 bg-white text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40" />
                 </div>
-                <button type="submit" class="text-white text-[13px] mt-7 font-mono bg-black hover:bg-gray-700 transition-all rounded-md w-[170px] h-12 items-center justify-center">Buscar encuestas</button>
+                <button type="submit" class="text-white text-sm mt-7 bg-indigo-600 shadow-sm hover:bg-indigo-500 transition rounded-md w-[170px] h-12 items-center justify-center">Buscar encuestas</button>
             </form>
         </div>
     </div>
 
-    {% if llamadas %}
 
         <section class="container mx-auto">
             <div class="flex flex-col mt-6">
@@ -42,6 +41,7 @@
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200  ">
+                                    {% if llamadas %}
                                     {% for llamada in llamadas %}
                                     <tr>
                                         <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
@@ -67,13 +67,17 @@
                                         
                                     </tr>
                                     {% endfor %}
+                                    {% else %}
+                                    {% if request.GET.start_date and request.GET.end_date %}
+                                    <tr>
+                                        <td class="font-bold pl-5">No hay llamadas</td>
+                                    </tr>
+                                    {% endif %}
+                                    {% endif %}
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    {% endif %}
-
-{% endblock %}
+        </section>{% endblock %}
