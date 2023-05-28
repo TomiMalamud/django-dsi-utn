@@ -1,5 +1,5 @@
 module.exports = {
-	content: ["encuestas/templates/**/*.html"],
+	content: ["./encuestas/**/*.html"],
 	theme: {
 		extend: {},
 	},
